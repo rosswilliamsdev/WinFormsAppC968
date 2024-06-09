@@ -123,42 +123,105 @@ namespace WinFormsAppC968
             part.Max = max;
             part.Min = min;
 
-            if (part is InHousePart inHousePart)
+            if (isChangingPartType)
             {
-                // Parse machine ID from string to int
-                if (int.TryParse(machineIDCompanyNameText, out int machineID))
+                // If the user is changing the part type, remove the current part from the inventory
+                inventory.AllParts.Remove(part);
+
+                if (inHouseRadioButton.Checked)
                 {
-                    inHousePart.MachineID = machineID;
+                    // Validate machine ID
+                    if (!int.TryParse(machineIDCompanyNameText, out int machineID))
+                    {
+                        MessageBox.Show("Machine ID must be a number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Change from OutsourcedPart to InHousePart
+                    InHousePart newInHousePart = new InHousePart()
+                    {
+                        PartID = part.PartID,
+                        Name = nameText,
+                        Inventory = inventoryCount,
+                        PriceCost = priceCost,
+                        Min = min,
+                        Max = max,
+                        MachineID = machineID
+                    };
+
+                    // Add the new InHousePart to the inventory
+                    inventory.AllParts.Add(newInHousePart);
+
+                    // Update the 'part' reference to point to the new InHousePart object
+                    part = newInHousePart;
                 }
-                else
+                else if (outsourcedRadioButton.Checked)
                 {
-                    // If machine ID is not a valid integer
-                    isValid = false;
-                    MessageBox.Show("Machine ID must be a number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    // Validate company name is not a number
+                    if (int.TryParse(machineIDCompanyNameText, out _))
+                    {
+                        MessageBox.Show("Company Name cannot be a number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Change from InHousePart to OutsourcedPart
+                    OutsourcedPart newOutsourcedPart = new OutsourcedPart()
+                    {
+                        PartID = part.PartID,
+                        Name = nameText,
+                        Inventory = inventoryCount,
+                        PriceCost = priceCost,
+                        Min = min,
+                        Max = max,
+                        CompanyName = machineIDCompanyNameText
+                    };
+
+                    // Add the new OutsourcedPart to the inventory
+                    inventory.AllParts.Add(newOutsourcedPart);
+
+                    // Update the 'part' reference to point to the new OutsourcedPart object
+                    part = newOutsourcedPart;
                 }
             }
-            else if (part is OutsourcedPart outsourcedPart)
+            else
             {
-                // Company name must be a string
-                if (!int.TryParse(machineIDCompanyNameText, out _))
+                if (inHouseRadioButton.Checked)
                 {
-                    outsourcedPart.CompanyName = machineIDCompanyNameText;
+                    if (part is InHousePart inHousePart)
+                    {
+                        if (int.TryParse(machineIDCompanyNameText, out int machineID))
+                        {
+                            inHousePart.MachineID = machineID;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Machine ID must be a number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
                 }
-                else
+                else if (outsourcedRadioButton.Checked)
                 {
-                    isValid = false;
-                    MessageBox.Show("Company Name cannot be a number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    if (part is OutsourcedPart outsourcedPart)
+                    {
+                        if (!int.TryParse(machineIDCompanyNameText, out _))
+                        {
+                            outsourcedPart.CompanyName = machineIDCompanyNameText;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Company Name cannot be a number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
                 }
             }
 
-            if (isValid)
-            {
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
+
+
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
