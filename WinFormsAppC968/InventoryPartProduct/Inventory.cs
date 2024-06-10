@@ -40,7 +40,7 @@ namespace WinFormsAppC968.InventoryPartProduct
                 InStock = 50,
                 Min = 5,
                 Max = 100,
-                AssociatedParts = new BindingList<Part> { AllParts[0], AllParts[1] }
+                AssociatedParts = new BindingList<Part> { AllParts[8], AllParts[1] }
             },
             new Product
             {
@@ -90,7 +90,7 @@ namespace WinFormsAppC968.InventoryPartProduct
                 InStock = 70,
                 Min = 5,
                 Max = 120,
-                AssociatedParts = new BindingList<Part> { AllParts[0], AllParts[2] }
+                AssociatedParts = new BindingList<Part> { AllParts[9], AllParts[2] }
             },
             new Product
             {

@@ -45,51 +45,59 @@ namespace WinFormsAppC968
 
         private void partsDeleteButton_Click(object sender, EventArgs e)
         {
-            List<Part> partsToDelete = new List<Part>();
-
             if (dataGridViewParts.SelectedRows.Count > 0)
             {
+                List<Part> partsToDelete = new List<Part>();
+                bool canDelete = true;
 
-                foreach (var part in partsToDelete)
+                foreach (DataGridViewRow row in dataGridViewParts.SelectedRows)
                 {
-                    foreach (var product in inventory.Products)
+                    int index = row.Index;
+                    if (index >= 0 && index < inventory.AllParts.Count)
                     {
-                        if (product.AssociatedParts.Contains(part))
+                        Part partToDelete = inventory.AllParts[index];
+
+                        // Check if the part is associated with any product
+                        foreach (var product in inventory.Products)
                         {
-                            MessageBox.Show($"{product} requires the associated part {part}, therefore the part cannot be deleted.", "Product Requirement", MessageBoxButtons.OK);
+                            if (product.AssociatedParts.Contains(partToDelete))
+                            {
+                                MessageBox.Show($"{product.Name} requires the associated part {partToDelete.Name}, therefore the part cannot be deleted.", "Product Requirement", MessageBoxButtons.OK);
+                                canDelete = false;
+                                break;
+                            }
+                        }
+
+                        if (!canDelete)
+                        {
                             break;
                         }
+
+                        partsToDelete.Add(partToDelete);
                     }
                 }
 
-                //Confirm delete
-                var confirmResult = MessageBox.Show("Are you sure you want to delete the selected part(s)?",
-                                            "Confirm Delete",
-                                            MessageBoxButtons.YesNo,
-                                            MessageBoxIcon.Warning);
-
-                if (confirmResult == DialogResult.Yes)
+                if (canDelete)
                 {
-                    foreach (DataGridViewRow row in dataGridViewParts.SelectedRows)
+                    // Confirm delete
+                    var confirmResult = MessageBox.Show("Are you sure you want to delete the selected part(s)?",
+                                                        "Confirm Delete",
+                                                        MessageBoxButtons.YesNo,
+                                                        MessageBoxIcon.Warning);
+
+                    if (confirmResult == DialogResult.Yes)
                     {
-                        int index = row.Index;
-                        if (index >= 0 && index < inventory.AllParts.Count)
+                        foreach (Part partToDelete in partsToDelete)
                         {
-                            Part partToDelete = inventory.AllParts[index];
-                            partsToDelete.Add(partToDelete);
+                            inventory.deletePart(partToDelete);
                         }
+
+                        MessageBox.Show("Parts deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Refresh the DataGridView
+                        dataGridViewParts.DataSource = null;
+                        dataGridViewParts.DataSource = inventory.AllParts;
                     }
-
-                    foreach (Part partToDelete in partsToDelete)
-                    {
-                        inventory.deletePart(partToDelete);
-                    }
-
-                    MessageBox.Show("Parts deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Refresh the DataGridView
-                    dataGridViewParts.DataSource = null;
-                    dataGridViewParts.DataSource = inventory.AllParts;
                 }
             }
             else
