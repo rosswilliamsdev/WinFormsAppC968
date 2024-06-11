@@ -172,5 +172,47 @@ namespace WinFormsAppC968
             ModifyProduct modifyProductForm = new ModifyProduct();
             modifyProductForm.Show();
         }
+
+        private void productsDeleteButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewProducts.SelectedRows.Count > 0)
+            {
+                List<Product> productsToDelete = new List<Product>();
+
+                foreach (DataGridViewRow row in dataGridViewProducts.SelectedRows)
+                {
+                    int index = row.Index;
+                    if (index >= 0 && index < inventory.Products.Count)
+                    {
+                        Product productToDelete = inventory.Products[index];
+                        productsToDelete.Add(productToDelete);
+                    }
+                }
+
+                    // Confirm delete
+                    var confirmResult = MessageBox.Show("Are you sure you want to delete the selected product(s)?",
+                                                        "Confirm Delete",
+                                                        MessageBoxButtons.YesNo,
+                                                        MessageBoxIcon.Warning);
+
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        foreach (Product productToDelete in productsToDelete)
+                        {
+                        inventory.removeProduct(productToDelete.ProductID);
+                        }
+
+                        MessageBox.Show("Parts deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Refresh the DataGridView
+                        dataGridViewProducts.DataSource = null;
+                        dataGridViewProducts.DataSource = inventory.Products;
+                    }
+            }
+            else
+            {
+                MessageBox.Show("Please select a part to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }

@@ -311,6 +311,7 @@ namespace WinFormsAppC968
             productsDeleteButton.TabIndex = 9;
             productsDeleteButton.Text = "Delete";
             productsDeleteButton.UseVisualStyleBackColor = true;
+            productsDeleteButton.Click += productsDeleteButton_Click;
             // 
             // productsModifyButton
             // 

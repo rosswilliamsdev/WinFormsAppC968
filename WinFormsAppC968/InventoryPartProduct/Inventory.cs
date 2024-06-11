@@ -157,11 +157,9 @@ namespace WinFormsAppC968.InventoryPartProduct
                 {
                     Products.RemoveAt(i);
                     return true;
-                    //write confirmation message that product was removed
                 }
             }
             return false;
-            //write message product could not be removed
         }
         public Product lookupProduct(int productId)
         {
