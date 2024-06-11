@@ -56,20 +56,22 @@ namespace WinFormsAppC968
             inventoryDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             minDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             maxDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            allPartsBindingSource = new BindingSource(components);
+            allPartsBindingSource1 = new BindingSource(components);
             inventoryBindingSource = new BindingSource(components);
-            dataGridView1 = new DataGridView();
+            allPartsBindingSource = new BindingSource(components);
+            dataGridViewAssociatedParts = new DataGridView();
             nameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             minDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             maxDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             associatedPartsBindingSource = new BindingSource(components);
             productBindingSource = new BindingSource(components);
             label8 = new Label();
-            button4 = new Button();
+            addProductAddButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewParts).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)allPartsBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)allPartsBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)inventoryBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)allPartsBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewAssociatedParts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)associatedPartsBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
             SuspendLayout();
@@ -240,13 +242,14 @@ namespace WinFormsAppC968
             dataGridViewParts.AutoGenerateColumns = false;
             dataGridViewParts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewParts.Columns.AddRange(new DataGridViewColumn[] { partIDDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, inventoryDataGridViewTextBoxColumn, minDataGridViewTextBoxColumn, maxDataGridViewTextBoxColumn });
-            dataGridViewParts.DataSource = allPartsBindingSource;
+            dataGridViewParts.DataSource = allPartsBindingSource1;
             dataGridViewParts.Location = new Point(458, 88);
             dataGridViewParts.Name = "dataGridViewParts";
             dataGridViewParts.RowHeadersWidth = 51;
             dataGridViewParts.RowTemplate.Height = 29;
             dataGridViewParts.Size = new Size(537, 188);
             dataGridViewParts.TabIndex = 55;
+            dataGridViewParts.CellContentClick += dataGridViewParts_CellContentClick;
             // 
             // partIDDataGridViewTextBoxColumn
             // 
@@ -288,27 +291,32 @@ namespace WinFormsAppC968
             maxDataGridViewTextBoxColumn.Name = "maxDataGridViewTextBoxColumn";
             maxDataGridViewTextBoxColumn.Width = 125;
             // 
-            // allPartsBindingSource
+            // allPartsBindingSource1
             // 
-            allPartsBindingSource.DataMember = "AllParts";
-            allPartsBindingSource.DataSource = inventoryBindingSource;
+            allPartsBindingSource1.DataMember = "AllParts";
+            allPartsBindingSource1.DataSource = inventoryBindingSource;
             // 
             // inventoryBindingSource
             // 
             inventoryBindingSource.DataSource = typeof(Inventory);
             // 
-            // dataGridView1
+            // allPartsBindingSource
             // 
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { nameDataGridViewTextBoxColumn1, minDataGridViewTextBoxColumn1, maxDataGridViewTextBoxColumn1 });
-            dataGridView1.DataSource = associatedPartsBindingSource;
-            dataGridView1.Location = new Point(458, 356);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(537, 188);
-            dataGridView1.TabIndex = 59;
+            allPartsBindingSource.DataMember = "AllParts";
+            allPartsBindingSource.DataSource = inventoryBindingSource;
+            // 
+            // dataGridViewAssociatedParts
+            // 
+            dataGridViewAssociatedParts.AutoGenerateColumns = false;
+            dataGridViewAssociatedParts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewAssociatedParts.Columns.AddRange(new DataGridViewColumn[] { nameDataGridViewTextBoxColumn1, minDataGridViewTextBoxColumn1, maxDataGridViewTextBoxColumn1 });
+            dataGridViewAssociatedParts.DataSource = associatedPartsBindingSource;
+            dataGridViewAssociatedParts.Location = new Point(458, 356);
+            dataGridViewAssociatedParts.Name = "dataGridViewAssociatedParts";
+            dataGridViewAssociatedParts.RowHeadersWidth = 51;
+            dataGridViewAssociatedParts.RowTemplate.Height = 29;
+            dataGridViewAssociatedParts.Size = new Size(537, 188);
+            dataGridViewAssociatedParts.TabIndex = 59;
             // 
             // nameDataGridViewTextBoxColumn1
             // 
@@ -352,23 +360,24 @@ namespace WinFormsAppC968
             label8.TabIndex = 60;
             label8.Text = "Parts Associated with the Product";
             // 
-            // button4
+            // addProductAddButton
             // 
-            button4.Location = new Point(920, 290);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 44);
-            button4.TabIndex = 61;
-            button4.Text = "Add";
-            button4.UseVisualStyleBackColor = true;
+            addProductAddButton.Location = new Point(920, 290);
+            addProductAddButton.Name = "addProductAddButton";
+            addProductAddButton.Size = new Size(75, 44);
+            addProductAddButton.TabIndex = 61;
+            addProductAddButton.Text = "Add";
+            addProductAddButton.UseVisualStyleBackColor = true;
+            addProductAddButton.Click += addProductAddButton_Click;
             // 
             // AddProduct
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1027, 711);
-            Controls.Add(button4);
+            Controls.Add(addProductAddButton);
             Controls.Add(label8);
-            Controls.Add(dataGridView1);
+            Controls.Add(dataGridViewAssociatedParts);
             Controls.Add(button8);
             Controls.Add(textBox6);
             Controls.Add(partsLabel);
@@ -393,9 +402,10 @@ namespace WinFormsAppC968
             Text = "AddProduct";
             Load += AddProduct_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewParts).EndInit();
-            ((System.ComponentModel.ISupportInitialize)allPartsBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)allPartsBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)inventoryBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)allPartsBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewAssociatedParts).EndInit();
             ((System.ComponentModel.ISupportInitialize)associatedPartsBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
             ResumeLayout(false);
@@ -424,9 +434,9 @@ namespace WinFormsAppC968
         private TextBox textBox6;
         private Label partsLabel;
         private DataGridView dataGridViewParts;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewAssociatedParts;
         private Label label8;
-        private Button button4;
+        private Button addProductAddButton;
         private DataGridViewTextBoxColumn partIDDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn inventoryDataGridViewTextBoxColumn;
@@ -441,5 +451,6 @@ namespace WinFormsAppC968
         private DataGridViewTextBoxColumn maxDataGridViewTextBoxColumn1;
         private BindingSource associatedPartsBindingSource;
         private BindingSource productBindingSource;
+        private BindingSource allPartsBindingSource1;
     }
 }

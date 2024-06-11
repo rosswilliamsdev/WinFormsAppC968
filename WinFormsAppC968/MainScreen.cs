@@ -163,7 +163,7 @@ namespace WinFormsAppC968
 
         private void productsAddButton_Click(object sender, EventArgs e)
         {
-            AddProduct addProductForm = new AddProduct();
+            AddProduct addProductForm = new AddProduct(inventory);
             addProductForm.Show();
         }
 
