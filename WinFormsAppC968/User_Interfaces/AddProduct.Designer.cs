@@ -211,7 +211,7 @@ namespace WinFormsAppC968
             deleteButton.TabIndex = 54;
             deleteButton.Text = "Delete";
             deleteButton.UseVisualStyleBackColor = true;
-            deleteButton.Click += this.button3_Click;
+            deleteButton.Click += this.deleteButton_Click;
             // 
             // button8
             // 

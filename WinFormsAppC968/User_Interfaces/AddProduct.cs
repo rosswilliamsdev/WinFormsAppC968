@@ -57,12 +57,17 @@ namespace WinFormsAppC968
             foreach (DataGridViewRow row in dataGridViewParts.SelectedRows)
             {
                 if (row.DataBoundItem is Part part)
-                {
+                {   //Check if part is already in associated parts
+                    if(product.AssociatedParts.Contains(part))
+                    {
+                        continue;
+                    }
+
                     selectedParts.Add(part);
                 }
             }
 
-
+            // Add the parts that pass validation
             foreach (Part part in selectedParts)
             {
                 product.addAssociatedPart(part);
@@ -156,5 +161,50 @@ namespace WinFormsAppC968
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewAssociatedParts.SelectedRows.Count > 0)
+            {
+                List<Part> associatedPartsToDelete = new List<Part>();
+
+                foreach (DataGridViewRow row in dataGridViewAssociatedParts.SelectedRows)
+                {
+                    int index = row.Index;
+                    if (index >= 0 && index < product.AssociatedParts.Count)
+                    {
+                        Part partToDelete = product.AssociatedParts[index];
+
+                        associatedPartsToDelete.Add(partToDelete);
+                    }
+                }
+
+                // Confirm delete
+                var confirmResult = MessageBox.Show("Are you sure you want to delete the selected part(s)?",
+                                                    "Confirm Delete",
+                                                    MessageBoxButtons.YesNo,
+                                                    MessageBoxIcon.Warning);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    foreach (Part partToDelete in associatedPartsToDelete)
+                    {
+                        product.removeAssociatedPart(partToDelete.PartID);
+                    }
+
+                    MessageBox.Show("Parts deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Refresh the DataGridView
+                    dataGridViewAssociatedParts.DataSource = null;
+                    dataGridViewAssociatedParts.DataSource = product.AssociatedParts;
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Please select a part to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
+
