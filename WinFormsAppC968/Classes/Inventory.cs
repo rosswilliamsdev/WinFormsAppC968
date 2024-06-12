@@ -135,7 +135,7 @@ namespace WinFormsAppC968.InventoryPartProduct
         };
         }
 
-        private int GenerateRandomID()
+        public int GenerateRandomID()
         {
             return random.Next(10000, 99999);
         }

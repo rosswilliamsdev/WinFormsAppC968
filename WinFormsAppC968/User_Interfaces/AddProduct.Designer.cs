@@ -33,20 +33,20 @@ namespace WinFormsAppC968
             components = new System.ComponentModel.Container();
             label1 = new Label();
             button2 = new Button();
-            button1 = new Button();
+            saveButton = new Button();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            textBox7 = new TextBox();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
-            button3 = new Button();
+            minTextbox = new TextBox();
+            maxTextbox = new TextBox();
+            priceCostTextbox = new TextBox();
+            inventoryTextbox = new TextBox();
+            nameTextbox = new TextBox();
+            idTextbox = new TextBox();
+            deleteButton = new Button();
             button8 = new Button();
             textBox6 = new TextBox();
             partsLabel = new Label();
@@ -96,14 +96,15 @@ namespace WinFormsAppC968
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // button1
+            // saveButton
             // 
-            button1.Location = new Point(816, 655);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 44);
-            button1.TabIndex = 52;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = true;
+            saveButton.Location = new Point(816, 655);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(75, 44);
+            saveButton.TabIndex = 52;
+            saveButton.Text = "Save";
+            saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // label7
             // 
@@ -159,57 +160,58 @@ namespace WinFormsAppC968
             label2.TabIndex = 45;
             label2.Text = "ID";
             // 
-            // textBox7
+            // minTextbox
             // 
-            textBox7.Location = new Point(285, 372);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(90, 27);
-            textBox7.TabIndex = 44;
+            minTextbox.Location = new Point(285, 372);
+            minTextbox.Name = "minTextbox";
+            minTextbox.Size = new Size(90, 27);
+            minTextbox.TabIndex = 44;
             // 
-            // textBox5
+            // maxTextbox
             // 
-            textBox5.Location = new Point(110, 372);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(90, 27);
-            textBox5.TabIndex = 42;
+            maxTextbox.Location = new Point(110, 372);
+            maxTextbox.Name = "maxTextbox";
+            maxTextbox.Size = new Size(90, 27);
+            maxTextbox.TabIndex = 42;
             // 
-            // textBox4
+            // priceCostTextbox
             // 
-            textBox4.Location = new Point(110, 322);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(176, 27);
-            textBox4.TabIndex = 41;
+            priceCostTextbox.Location = new Point(110, 322);
+            priceCostTextbox.Name = "priceCostTextbox";
+            priceCostTextbox.Size = new Size(176, 27);
+            priceCostTextbox.TabIndex = 41;
             // 
-            // textBox3
+            // inventoryTextbox
             // 
-            textBox3.Location = new Point(110, 272);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(176, 27);
-            textBox3.TabIndex = 40;
+            inventoryTextbox.Location = new Point(110, 272);
+            inventoryTextbox.Name = "inventoryTextbox";
+            inventoryTextbox.Size = new Size(176, 27);
+            inventoryTextbox.TabIndex = 40;
             // 
-            // textBox2
+            // nameTextbox
             // 
-            textBox2.Location = new Point(110, 218);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(176, 27);
-            textBox2.TabIndex = 39;
+            nameTextbox.Location = new Point(110, 218);
+            nameTextbox.Name = "nameTextbox";
+            nameTextbox.Size = new Size(176, 27);
+            nameTextbox.TabIndex = 39;
             // 
-            // textBox1
+            // idTextbox
             // 
-            textBox1.Location = new Point(110, 165);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(176, 27);
-            textBox1.TabIndex = 38;
+            idTextbox.Location = new Point(110, 165);
+            idTextbox.Name = "idTextbox";
+            idTextbox.ReadOnly = true;
+            idTextbox.Size = new Size(176, 27);
+            idTextbox.TabIndex = 38;
             // 
-            // button3
+            // deleteButton
             // 
-            button3.Location = new Point(920, 593);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 44);
-            button3.TabIndex = 54;
-            button3.Text = "Delete";
-            button3.UseVisualStyleBackColor = true;
+            deleteButton.Location = new Point(920, 593);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(75, 44);
+            deleteButton.TabIndex = 54;
+            deleteButton.Text = "Delete";
+            deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += this.button3_Click;
             // 
             // button8
             // 
@@ -382,21 +384,21 @@ namespace WinFormsAppC968
             Controls.Add(textBox6);
             Controls.Add(partsLabel);
             Controls.Add(dataGridViewParts);
-            Controls.Add(button3);
+            Controls.Add(deleteButton);
             Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(saveButton);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(textBox7);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(minTextbox);
+            Controls.Add(maxTextbox);
+            Controls.Add(priceCostTextbox);
+            Controls.Add(inventoryTextbox);
+            Controls.Add(nameTextbox);
+            Controls.Add(idTextbox);
             Controls.Add(label1);
             Name = "AddProduct";
             Text = "AddProduct";
@@ -416,20 +418,20 @@ namespace WinFormsAppC968
 
         private Label label1;
         private Button button2;
-        private Button button1;
+        private Button saveButton;
         private Label label7;
         private Label label6;
         private Label label5;
         private Label label4;
         private Label label3;
         private Label label2;
-        private TextBox textBox7;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private Button button3;
+        private TextBox minTextbox;
+        private TextBox maxTextbox;
+        private TextBox priceCostTextbox;
+        private TextBox inventoryTextbox;
+        private TextBox nameTextbox;
+        private TextBox idTextbox;
+        private Button deleteButton;
         private Button button8;
         private TextBox textBox6;
         private Label partsLabel;
