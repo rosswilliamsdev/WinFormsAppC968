@@ -22,6 +22,7 @@ namespace WinFormsAppC968
             InitializeComponent();
             this.inventory = inventory;
             product = new Product();
+            product.AssociatedParts = new BindingList<Part>();
 
             dataGridViewParts.DataSource = inventory.AllParts;
             dataGridViewParts.ReadOnly = true;

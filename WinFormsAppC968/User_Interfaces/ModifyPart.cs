@@ -15,8 +15,9 @@ namespace WinFormsAppC968
     public partial class ModifyPart : Form
     {
         private Part part;
-        private bool isChangingPartType = false;
         private Inventory inventory;
+
+        private bool isChangingPartType = false;
         public ModifyPart(Part part, Inventory inventory)
         {
             InitializeComponent();

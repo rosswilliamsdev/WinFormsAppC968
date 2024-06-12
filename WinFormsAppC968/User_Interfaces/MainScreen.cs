@@ -169,8 +169,31 @@ namespace WinFormsAppC968
 
         private void productsModifyButton_Click(object sender, EventArgs e)
         {
-            ModifyProduct modifyProductForm = new ModifyProduct();
-            modifyProductForm.Show();
+
+            if (dataGridViewProducts.SelectedRows.Count == 1)
+            {
+                DataGridViewRow selectedRow = dataGridViewProducts.SelectedRows[0];
+                if (selectedRow.DataBoundItem is Product product)
+                {
+                    ModifyProduct modifyProductForm = new ModifyProduct(product, inventory);
+                    if (modifyProductForm.ShowDialog() == DialogResult.OK)
+                    {
+                        modifyProductForm.Show();
+                    }
+                }
+            }
+            else if (dataGridViewProducts.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a product to modify.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            else
+            {
+                MessageBox.Show("Cannot modify multiple products simultaneously.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            /*ModifyProduct modifyProductForm = new ModifyProduct();*/
+            /*modifyProductForm.Show();*/
         }
 
         private void productsDeleteButton_Click(object sender, EventArgs e)

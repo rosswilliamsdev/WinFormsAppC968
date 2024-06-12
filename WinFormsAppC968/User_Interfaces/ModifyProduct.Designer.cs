@@ -31,61 +31,59 @@ namespace WinFormsAppC968
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            button4 = new Button();
+            addButton = new Button();
             label8 = new Label();
-            dataGridView1 = new DataGridView();
+            dataGridViewAssociatedParts = new DataGridView();
+            partIDDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            nameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            inventoryDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            minDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            maxDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            associatedPartsBindingSource = new BindingSource(components);
+            productBindingSource = new BindingSource(components);
             button8 = new Button();
             textBox6 = new TextBox();
             partsLabel = new Label();
             dataGridViewParts = new DataGridView();
-            button3 = new Button();
+            partIDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            inventoryDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            minDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            maxDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            allPartsBindingSource = new BindingSource(components);
+            inventoryBindingSource = new BindingSource(components);
+            deleteButton = new Button();
             cancelButton = new Button();
-            button1 = new Button();
+            saveButton = new Button();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            textBox7 = new TextBox();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            minTextbox = new TextBox();
+            maxTextbox = new TextBox();
+            priceCostTextbox = new TextBox();
+            inventoryTextbox = new TextBox();
+            nameTextbox = new TextBox();
+            idTextbox = new TextBox();
             label1 = new Label();
-            productBindingSource = new BindingSource(components);
-            inventoryBindingSource = new BindingSource(components);
-            allPartsBindingSource = new BindingSource(components);
-            partIDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            inventoryDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            priceDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            minDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            maxDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            associatedPartsBindingSource = new BindingSource(components);
-            partIDDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            nameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            inventoryDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            priceDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            minDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            maxDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewParts).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)inventoryBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)allPartsBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewAssociatedParts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)associatedPartsBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewParts).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)allPartsBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)inventoryBindingSource).BeginInit();
             SuspendLayout();
             // 
-            // button4
+            // addButton
             // 
-            button4.Location = new Point(921, 284);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 44);
-            button4.TabIndex = 84;
-            button4.Text = "Add";
-            button4.UseVisualStyleBackColor = true;
+            addButton.Location = new Point(921, 284);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(75, 44);
+            addButton.TabIndex = 84;
+            addButton.Text = "Add";
+            addButton.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -96,18 +94,67 @@ namespace WinFormsAppC968
             label8.TabIndex = 83;
             label8.Text = "Parts Associated with the Product";
             // 
-            // dataGridView1
+            // dataGridViewAssociatedParts
             // 
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { partIDDataGridViewTextBoxColumn1, nameDataGridViewTextBoxColumn1, inventoryDataGridViewTextBoxColumn1, priceDataGridViewTextBoxColumn1, minDataGridViewTextBoxColumn1, maxDataGridViewTextBoxColumn1 });
-            dataGridView1.DataSource = associatedPartsBindingSource;
-            dataGridView1.Location = new Point(459, 350);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(537, 188);
-            dataGridView1.TabIndex = 82;
+            dataGridViewAssociatedParts.AutoGenerateColumns = false;
+            dataGridViewAssociatedParts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewAssociatedParts.Columns.AddRange(new DataGridViewColumn[] { partIDDataGridViewTextBoxColumn1, nameDataGridViewTextBoxColumn1, inventoryDataGridViewTextBoxColumn1, minDataGridViewTextBoxColumn1, maxDataGridViewTextBoxColumn1 });
+            dataGridViewAssociatedParts.DataSource = associatedPartsBindingSource;
+            dataGridViewAssociatedParts.Location = new Point(459, 350);
+            dataGridViewAssociatedParts.Name = "dataGridViewAssociatedParts";
+            dataGridViewAssociatedParts.RowHeadersWidth = 51;
+            dataGridViewAssociatedParts.RowTemplate.Height = 29;
+            dataGridViewAssociatedParts.Size = new Size(537, 188);
+            dataGridViewAssociatedParts.TabIndex = 82;
+            // 
+            // partIDDataGridViewTextBoxColumn1
+            // 
+            partIDDataGridViewTextBoxColumn1.DataPropertyName = "PartID";
+            partIDDataGridViewTextBoxColumn1.HeaderText = "PartID";
+            partIDDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            partIDDataGridViewTextBoxColumn1.Name = "partIDDataGridViewTextBoxColumn1";
+            partIDDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn1.HeaderText = "Name";
+            nameDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            nameDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // inventoryDataGridViewTextBoxColumn1
+            // 
+            inventoryDataGridViewTextBoxColumn1.DataPropertyName = "Inventory";
+            inventoryDataGridViewTextBoxColumn1.HeaderText = "Inventory";
+            inventoryDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            inventoryDataGridViewTextBoxColumn1.Name = "inventoryDataGridViewTextBoxColumn1";
+            inventoryDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // minDataGridViewTextBoxColumn1
+            // 
+            minDataGridViewTextBoxColumn1.DataPropertyName = "Min";
+            minDataGridViewTextBoxColumn1.HeaderText = "Min";
+            minDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            minDataGridViewTextBoxColumn1.Name = "minDataGridViewTextBoxColumn1";
+            minDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // maxDataGridViewTextBoxColumn1
+            // 
+            maxDataGridViewTextBoxColumn1.DataPropertyName = "Max";
+            maxDataGridViewTextBoxColumn1.HeaderText = "Max";
+            maxDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            maxDataGridViewTextBoxColumn1.Name = "maxDataGridViewTextBoxColumn1";
+            maxDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // associatedPartsBindingSource
+            // 
+            associatedPartsBindingSource.DataMember = "AssociatedParts";
+            associatedPartsBindingSource.DataSource = productBindingSource;
+            // 
+            // productBindingSource
+            // 
+            productBindingSource.DataSource = typeof(Product);
             // 
             // button8
             // 
@@ -139,7 +186,7 @@ namespace WinFormsAppC968
             // 
             dataGridViewParts.AutoGenerateColumns = false;
             dataGridViewParts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewParts.Columns.AddRange(new DataGridViewColumn[] { partIDDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, inventoryDataGridViewTextBoxColumn, priceDataGridViewTextBoxColumn, minDataGridViewTextBoxColumn, maxDataGridViewTextBoxColumn });
+            dataGridViewParts.Columns.AddRange(new DataGridViewColumn[] { partIDDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, inventoryDataGridViewTextBoxColumn, minDataGridViewTextBoxColumn, maxDataGridViewTextBoxColumn });
             dataGridViewParts.DataSource = allPartsBindingSource;
             dataGridViewParts.Location = new Point(459, 82);
             dataGridViewParts.Name = "dataGridViewParts";
@@ -148,14 +195,63 @@ namespace WinFormsAppC968
             dataGridViewParts.Size = new Size(537, 188);
             dataGridViewParts.TabIndex = 78;
             // 
-            // button3
+            // partIDDataGridViewTextBoxColumn
             // 
-            button3.Location = new Point(921, 587);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 44);
-            button3.TabIndex = 77;
-            button3.Text = "Delete";
-            button3.UseVisualStyleBackColor = true;
+            partIDDataGridViewTextBoxColumn.DataPropertyName = "PartID";
+            partIDDataGridViewTextBoxColumn.HeaderText = "PartID";
+            partIDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            partIDDataGridViewTextBoxColumn.Name = "partIDDataGridViewTextBoxColumn";
+            partIDDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // inventoryDataGridViewTextBoxColumn
+            // 
+            inventoryDataGridViewTextBoxColumn.DataPropertyName = "Inventory";
+            inventoryDataGridViewTextBoxColumn.HeaderText = "Inventory";
+            inventoryDataGridViewTextBoxColumn.MinimumWidth = 6;
+            inventoryDataGridViewTextBoxColumn.Name = "inventoryDataGridViewTextBoxColumn";
+            inventoryDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // minDataGridViewTextBoxColumn
+            // 
+            minDataGridViewTextBoxColumn.DataPropertyName = "Min";
+            minDataGridViewTextBoxColumn.HeaderText = "Min";
+            minDataGridViewTextBoxColumn.MinimumWidth = 6;
+            minDataGridViewTextBoxColumn.Name = "minDataGridViewTextBoxColumn";
+            minDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // maxDataGridViewTextBoxColumn
+            // 
+            maxDataGridViewTextBoxColumn.DataPropertyName = "Max";
+            maxDataGridViewTextBoxColumn.HeaderText = "Max";
+            maxDataGridViewTextBoxColumn.MinimumWidth = 6;
+            maxDataGridViewTextBoxColumn.Name = "maxDataGridViewTextBoxColumn";
+            maxDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // allPartsBindingSource
+            // 
+            allPartsBindingSource.DataMember = "AllParts";
+            allPartsBindingSource.DataSource = inventoryBindingSource;
+            // 
+            // inventoryBindingSource
+            // 
+            inventoryBindingSource.DataSource = typeof(Inventory);
+            // 
+            // deleteButton
+            // 
+            deleteButton.Location = new Point(921, 587);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(75, 44);
+            deleteButton.TabIndex = 77;
+            deleteButton.Text = "Delete";
+            deleteButton.UseVisualStyleBackColor = true;
             // 
             // cancelButton
             // 
@@ -167,14 +263,14 @@ namespace WinFormsAppC968
             cancelButton.UseVisualStyleBackColor = true;
             cancelButton.Click += button2_Click;
             // 
-            // button1
+            // saveButton
             // 
-            button1.Location = new Point(817, 649);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 44);
-            button1.TabIndex = 75;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = true;
+            saveButton.Location = new Point(817, 649);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(75, 44);
+            saveButton.TabIndex = 75;
+            saveButton.Text = "Save";
+            saveButton.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -230,48 +326,48 @@ namespace WinFormsAppC968
             label2.TabIndex = 69;
             label2.Text = "ID";
             // 
-            // textBox7
+            // minTextbox
             // 
-            textBox7.Location = new Point(286, 366);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(90, 27);
-            textBox7.TabIndex = 68;
+            minTextbox.Location = new Point(286, 366);
+            minTextbox.Name = "minTextbox";
+            minTextbox.Size = new Size(90, 27);
+            minTextbox.TabIndex = 68;
             // 
-            // textBox5
+            // maxTextbox
             // 
-            textBox5.Location = new Point(111, 366);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(90, 27);
-            textBox5.TabIndex = 67;
+            maxTextbox.Location = new Point(111, 366);
+            maxTextbox.Name = "maxTextbox";
+            maxTextbox.Size = new Size(90, 27);
+            maxTextbox.TabIndex = 67;
             // 
-            // textBox4
+            // priceCostTextbox
             // 
-            textBox4.Location = new Point(111, 316);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(176, 27);
-            textBox4.TabIndex = 66;
+            priceCostTextbox.Location = new Point(111, 316);
+            priceCostTextbox.Name = "priceCostTextbox";
+            priceCostTextbox.Size = new Size(176, 27);
+            priceCostTextbox.TabIndex = 66;
             // 
-            // textBox3
+            // inventoryTextbox
             // 
-            textBox3.Location = new Point(111, 266);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(176, 27);
-            textBox3.TabIndex = 65;
+            inventoryTextbox.Location = new Point(111, 266);
+            inventoryTextbox.Name = "inventoryTextbox";
+            inventoryTextbox.Size = new Size(176, 27);
+            inventoryTextbox.TabIndex = 65;
             // 
-            // textBox2
+            // nameTextbox
             // 
-            textBox2.Location = new Point(111, 212);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(176, 27);
-            textBox2.TabIndex = 64;
+            nameTextbox.Location = new Point(111, 212);
+            nameTextbox.Name = "nameTextbox";
+            nameTextbox.Size = new Size(176, 27);
+            nameTextbox.TabIndex = 64;
             // 
-            // textBox1
+            // idTextbox
             // 
-            textBox1.Location = new Point(111, 159);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(176, 27);
-            textBox1.TabIndex = 63;
+            idTextbox.Location = new Point(111, 159);
+            idTextbox.Name = "idTextbox";
+            idTextbox.ReadOnly = true;
+            idTextbox.Size = new Size(176, 27);
+            idTextbox.TabIndex = 63;
             // 
             // label1
             // 
@@ -283,184 +379,71 @@ namespace WinFormsAppC968
             label1.TabIndex = 62;
             label1.Text = "Modify Product";
             // 
-            // productBindingSource
-            // 
-            productBindingSource.DataSource = typeof(Product);
-            // 
-            // inventoryBindingSource
-            // 
-            inventoryBindingSource.DataSource = typeof(Inventory);
-            // 
-            // allPartsBindingSource
-            // 
-            allPartsBindingSource.DataMember = "AllParts";
-            allPartsBindingSource.DataSource = inventoryBindingSource;
-            // 
-            // partIDDataGridViewTextBoxColumn
-            // 
-            partIDDataGridViewTextBoxColumn.DataPropertyName = "PartID";
-            partIDDataGridViewTextBoxColumn.HeaderText = "PartID";
-            partIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            partIDDataGridViewTextBoxColumn.Name = "partIDDataGridViewTextBoxColumn";
-            partIDDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            nameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // inventoryDataGridViewTextBoxColumn
-            // 
-            inventoryDataGridViewTextBoxColumn.DataPropertyName = "Inventory";
-            inventoryDataGridViewTextBoxColumn.HeaderText = "Inventory";
-            inventoryDataGridViewTextBoxColumn.MinimumWidth = 6;
-            inventoryDataGridViewTextBoxColumn.Name = "inventoryDataGridViewTextBoxColumn";
-            inventoryDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // priceDataGridViewTextBoxColumn
-            // 
-            priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            priceDataGridViewTextBoxColumn.HeaderText = "Price";
-            priceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            priceDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // minDataGridViewTextBoxColumn
-            // 
-            minDataGridViewTextBoxColumn.DataPropertyName = "Min";
-            minDataGridViewTextBoxColumn.HeaderText = "Min";
-            minDataGridViewTextBoxColumn.MinimumWidth = 6;
-            minDataGridViewTextBoxColumn.Name = "minDataGridViewTextBoxColumn";
-            minDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // maxDataGridViewTextBoxColumn
-            // 
-            maxDataGridViewTextBoxColumn.DataPropertyName = "Max";
-            maxDataGridViewTextBoxColumn.HeaderText = "Max";
-            maxDataGridViewTextBoxColumn.MinimumWidth = 6;
-            maxDataGridViewTextBoxColumn.Name = "maxDataGridViewTextBoxColumn";
-            maxDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // associatedPartsBindingSource
-            // 
-            associatedPartsBindingSource.DataMember = "AssociatedParts";
-            associatedPartsBindingSource.DataSource = productBindingSource;
-            // 
-            // partIDDataGridViewTextBoxColumn1
-            // 
-            partIDDataGridViewTextBoxColumn1.DataPropertyName = "PartID";
-            partIDDataGridViewTextBoxColumn1.HeaderText = "PartID";
-            partIDDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            partIDDataGridViewTextBoxColumn1.Name = "partIDDataGridViewTextBoxColumn1";
-            partIDDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // nameDataGridViewTextBoxColumn1
-            // 
-            nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn1.HeaderText = "Name";
-            nameDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            nameDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // inventoryDataGridViewTextBoxColumn1
-            // 
-            inventoryDataGridViewTextBoxColumn1.DataPropertyName = "Inventory";
-            inventoryDataGridViewTextBoxColumn1.HeaderText = "Inventory";
-            inventoryDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            inventoryDataGridViewTextBoxColumn1.Name = "inventoryDataGridViewTextBoxColumn1";
-            inventoryDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // priceDataGridViewTextBoxColumn1
-            // 
-            priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
-            priceDataGridViewTextBoxColumn1.HeaderText = "Price";
-            priceDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
-            priceDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // minDataGridViewTextBoxColumn1
-            // 
-            minDataGridViewTextBoxColumn1.DataPropertyName = "Min";
-            minDataGridViewTextBoxColumn1.HeaderText = "Min";
-            minDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            minDataGridViewTextBoxColumn1.Name = "minDataGridViewTextBoxColumn1";
-            minDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // maxDataGridViewTextBoxColumn1
-            // 
-            maxDataGridViewTextBoxColumn1.DataPropertyName = "Max";
-            maxDataGridViewTextBoxColumn1.HeaderText = "Max";
-            maxDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            maxDataGridViewTextBoxColumn1.Name = "maxDataGridViewTextBoxColumn1";
-            maxDataGridViewTextBoxColumn1.Width = 125;
-            // 
             // ModifyProduct
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1028, 711);
-            Controls.Add(button4);
+            Controls.Add(addButton);
             Controls.Add(label8);
-            Controls.Add(dataGridView1);
+            Controls.Add(dataGridViewAssociatedParts);
             Controls.Add(button8);
             Controls.Add(textBox6);
             Controls.Add(partsLabel);
             Controls.Add(dataGridViewParts);
-            Controls.Add(button3);
+            Controls.Add(deleteButton);
             Controls.Add(cancelButton);
-            Controls.Add(button1);
+            Controls.Add(saveButton);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(textBox7);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(minTextbox);
+            Controls.Add(maxTextbox);
+            Controls.Add(priceCostTextbox);
+            Controls.Add(inventoryTextbox);
+            Controls.Add(nameTextbox);
+            Controls.Add(idTextbox);
             Controls.Add(label1);
             Name = "ModifyProduct";
             Text = "ModifyProduct";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewParts).EndInit();
-            ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)inventoryBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)allPartsBindingSource).EndInit();
+            Load += ModifyProduct_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridViewAssociatedParts).EndInit();
             ((System.ComponentModel.ISupportInitialize)associatedPartsBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewParts).EndInit();
+            ((System.ComponentModel.ISupportInitialize)allPartsBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)inventoryBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button button4;
+        private Button addButton;
         private Label label8;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewAssociatedParts;
         private Button button8;
         private TextBox textBox6;
         private Label partsLabel;
         private DataGridView dataGridViewParts;
-        private Button button3;
+        private Button deleteButton;
         private Button cancelButton;
-        private Button button1;
+        private Button saveButton;
         private Label label7;
         private Label label6;
         private Label label5;
         private Label label4;
         private Label label3;
         private Label label2;
-        private TextBox textBox7;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox minTextbox;
+        private TextBox maxTextbox;
+        private TextBox priceCostTextbox;
+        private TextBox inventoryTextbox;
+        private TextBox nameTextbox;
+        private TextBox idTextbox;
         private Label label1;
         private DataGridViewTextBoxColumn partIDDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
