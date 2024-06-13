@@ -57,12 +57,12 @@ namespace WinFormsAppC968
             bool isValid = true;
 
             // Data from the form's text boxes
-            string nameText = nameTextbox.Text;
+            string nameText = nameTextbox.Text.Trim();
             string inventoryText = inventoryTextbox.Text;
             string priceCostText = priceCostTextbox.Text;
             string maxText = maxTextbox.Text;
             string minText = minTextbox.Text;
-            
+
 
             // Validate form inputs
             if (string.IsNullOrEmpty(nameText) ||
@@ -113,17 +113,107 @@ namespace WinFormsAppC968
                 return;
             }
 
-            // Update the part details
-            product.Name = nameText;
-            product.InStock = inventoryCount;
-            product.Price = priceCost;
-            product.Max = max;
-            product.Min = min;
+            if (product.AssociatedParts.Count == 0)
+            {
+                isValid = false;
+                MessageBox.Show("Product must have associated parts.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+
+            if (isValid)
+            {
+                // Update the part details
+                product.Name = nameText;
+                product.InStock = inventoryCount;
+                product.Price = priceCost;
+                product.Max = max;
+                product.Min = min;
+
+                MessageBox.Show("Product updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
 
 
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            List<Part> selectedParts = new List<Part>();
+
+            // Iterate through selected rows in the DataGridView and add the corresponding parts to the list
+            foreach (DataGridViewRow row in dataGridViewParts.SelectedRows)
+            {
+                if (row.DataBoundItem is Part part)
+                {   //Check if part is already in associated parts
+                    if (product.AssociatedParts.Contains(part))
+                    {
+                        continue;
+                    }
+
+                    selectedParts.Add(part);
+                }
+            }
+
+            // Add the parts that pass validation
+            foreach (Part part in selectedParts)
+            {
+                product.addAssociatedPart(part);
+            }
+
+
+            // Refresh the DataGridView for associated parts
+            dataGridViewAssociatedParts.DataSource = null;
+            dataGridViewAssociatedParts.DataSource = product.AssociatedParts;
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewAssociatedParts.SelectedRows.Count > 0)
+            {
+                List<Part> associatedPartsToDelete = new List<Part>();
+
+                foreach (DataGridViewRow row in dataGridViewAssociatedParts.SelectedRows)
+                {
+                    int index = row.Index;
+                    if (index >= 0 && index < product.AssociatedParts.Count)
+                    {
+                        Part partToDelete = product.AssociatedParts[index];
+
+                        associatedPartsToDelete.Add(partToDelete);
+                    }
+                }
+
+                // Confirm delete
+                var confirmResult = MessageBox.Show("Are you sure you want to delete the selected part(s)?",
+                                                    "Confirm Delete",
+                                                    MessageBoxButtons.YesNo,
+                                                    MessageBoxIcon.Warning);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    foreach (Part partToDelete in associatedPartsToDelete)
+                    {
+                        product.removeAssociatedPart(partToDelete.PartID);
+                    }
+
+                    MessageBox.Show("Parts deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Refresh the DataGridView
+                    dataGridViewAssociatedParts.DataSource = null;
+                    dataGridViewAssociatedParts.DataSource = product.AssociatedParts;
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Please select a part to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
+
 

@@ -84,6 +84,7 @@ namespace WinFormsAppC968
             addButton.TabIndex = 84;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
             // label8
             // 
@@ -252,6 +253,7 @@ namespace WinFormsAppC968
             deleteButton.TabIndex = 77;
             deleteButton.Text = "Delete";
             deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
             // 
             // cancelButton
             // 
@@ -271,6 +273,7 @@ namespace WinFormsAppC968
             saveButton.TabIndex = 75;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // label7
             // 
