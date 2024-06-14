@@ -45,6 +45,7 @@ namespace WinFormsAppC968
 
         private void partsDeleteButton_Click(object sender, EventArgs e)
         {
+            //can select multiple rows
             if (dataGridViewParts.SelectedRows.Count > 0)
             {
                 List<Part> partsToDelete = new List<Part>();
@@ -106,9 +107,34 @@ namespace WinFormsAppC968
             }
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void partsSearchButton_Click(object sender, EventArgs e)
         {
+            string partsSearchText = partsSearchTextbox.Text.Trim().ToLower();
 
+            if (string.IsNullOrEmpty(partsSearchText))
+            {
+                MessageBox.Show("Please enter text to search.", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var searchResults = inventory.AllParts
+            .Where(part =>
+                part.Name.ToLower().Contains(partsSearchText) ||
+                part.PartID.ToString().Contains(partsSearchText))
+            .ToList();
+
+            if (searchResults.Any())
+            {
+                // datagridview shows the search results
+                dataGridViewParts.DataSource = null;
+                dataGridViewParts.DataSource = searchResults;
+            }
+            else
+            {
+                MessageBox.Show("No matching parts found.", "Search Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dataGridViewParts.DataSource = null;
+                dataGridViewParts.DataSource = inventory.AllParts;
+            }
         }
 
         private void label1_Click_1(object sender, EventArgs e)
@@ -133,6 +159,7 @@ namespace WinFormsAppC968
 
         private void partsModifyButton_Click(object sender, EventArgs e)
         {
+            //can only modify one part at a time
             if (dataGridViewParts.SelectedRows.Count == 1)
             {
                 int selectedIndex = dataGridViewParts.SelectedRows[0].Index;
@@ -142,7 +169,7 @@ namespace WinFormsAppC968
                     ModifyPart modifyPartForm = new ModifyPart(selectedPart, inventory);
                     modifyPartForm.ShowDialog();
 
-                    // Refresh the DataGridView after modification
+                    // Refresh the DataGridView to show changes
                     dataGridViewParts.Refresh();
                 }
                 else
@@ -169,6 +196,7 @@ namespace WinFormsAppC968
 
         private void productsModifyButton_Click(object sender, EventArgs e)
         {
+            //can only modify one product at a time
             if (dataGridViewProducts.SelectedRows.Count == 1)
             {
                 DataGridViewRow selectedRow = dataGridViewProducts.SelectedRows[0];
@@ -210,29 +238,75 @@ namespace WinFormsAppC968
                     }
                 }
 
-                    // Confirm delete
-                    var confirmResult = MessageBox.Show("Are you sure you want to delete the selected product(s)?",
-                                                        "Confirm Delete",
-                                                        MessageBoxButtons.YesNo,
-                                                        MessageBoxIcon.Warning);
+                // Confirm delete
+                var confirmResult = MessageBox.Show("Are you sure you want to delete the selected product(s)?",
+                                                    "Confirm Delete",
+                                                    MessageBoxButtons.YesNo,
+                                                    MessageBoxIcon.Warning);
 
-                    if (confirmResult == DialogResult.Yes)
+                if (confirmResult == DialogResult.Yes)
+                {
+                    foreach (Product productToDelete in productsToDelete)
                     {
-                        foreach (Product productToDelete in productsToDelete)
-                        {
                         inventory.removeProduct(productToDelete.ProductID);
-                        }
-
-                        MessageBox.Show("Parts deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Refresh the DataGridView
-                        dataGridViewProducts.DataSource = null;
-                        dataGridViewProducts.DataSource = inventory.Products;
                     }
+
+                    MessageBox.Show("Parts deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Refresh the DataGridView
+                    dataGridViewProducts.DataSource = null;
+                    dataGridViewProducts.DataSource = inventory.Products;
+                }
             }
             else
             {
                 MessageBox.Show("Please select a part to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void partsRefreshButton_Click(object sender, EventArgs e)
+        {
+            dataGridViewParts.DataSource = null;
+            dataGridViewParts.DataSource = inventory.AllParts;
+            partsSearchTextbox.Text = string.Empty;
+        }
+
+        private void productsRefreshButton_Click(object sender, EventArgs e)
+        {
+            dataGridViewProducts.DataSource = null;
+            dataGridViewProducts.DataSource = inventory.Products;
+            productsSearchTextbox.Text = string.Empty;
+        }
+
+        private void productsSearchButton_Click(object sender, EventArgs e)
+        {
+            string productsSearchText = productsSearchTextbox.Text.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(productsSearchText))
+            {
+                MessageBox.Show("Please enter text to search.", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var searchResults = inventory.Products
+            .Where(products =>
+                products.Name.ToLower().Contains(productsSearchText) ||
+                products.ProductID.ToString().Contains(productsSearchText))
+            .ToList();
+
+            if (searchResults.Any())
+            {
+                // Refresh the DataGridView to reflect changes
+                dataGridViewProducts.DataSource = null;
+                dataGridViewProducts.DataSource = searchResults;
+            }
+            else
+            {
+                MessageBox.Show("No matching parts found.", "Search Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Refresh the DataGridView to reflect changes
+                dataGridViewProducts.DataSource = null;
+                dataGridViewProducts.DataSource = inventory.Products;
             }
         }
     }

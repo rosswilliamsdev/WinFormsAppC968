@@ -213,7 +213,55 @@ namespace WinFormsAppC968
                 MessageBox.Show("Please select a part to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void dataGridViewParts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            string searchText = searchTextbox.Text.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                MessageBox.Show("Please enter text to search.", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var searchResults = inventory.AllParts
+            .Where(part =>
+                part.Name.ToLower().Contains(searchText) ||
+                part.PartID.ToString().Contains(searchText))
+            .ToList();
+
+            if (searchResults.Any())
+            {
+                dataGridViewParts.DataSource = null;
+                dataGridViewParts.DataSource = searchResults;
+            }
+            else
+            {
+                MessageBox.Show("No matching parts found.", "Search Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dataGridViewParts.DataSource = null;
+                dataGridViewParts.DataSource = inventory.AllParts;
+            }
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            //refresh the datagridview
+            dataGridViewParts.DataSource = null;
+            dataGridViewParts.DataSource = inventory.AllParts;
+            searchTextbox.Text = string.Empty;
+        }
     }
 }
+
 
 

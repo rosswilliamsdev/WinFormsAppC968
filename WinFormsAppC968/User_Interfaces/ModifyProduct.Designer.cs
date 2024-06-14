@@ -41,8 +41,8 @@ namespace WinFormsAppC968
             maxDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             associatedPartsBindingSource = new BindingSource(components);
             productBindingSource = new BindingSource(components);
-            button8 = new Button();
-            textBox6 = new TextBox();
+            searchButton = new Button();
+            searchTextbox = new TextBox();
             partsLabel = new Label();
             dataGridViewParts = new DataGridView();
             partIDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -68,6 +68,7 @@ namespace WinFormsAppC968
             nameTextbox = new TextBox();
             idTextbox = new TextBox();
             label1 = new Label();
+            refreshButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAssociatedParts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)associatedPartsBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
@@ -78,7 +79,7 @@ namespace WinFormsAppC968
             // 
             // addButton
             // 
-            addButton.Location = new Point(921, 284);
+            addButton.Location = new Point(921, 276);
             addButton.Name = "addButton";
             addButton.Size = new Size(75, 44);
             addButton.TabIndex = 84;
@@ -157,22 +158,24 @@ namespace WinFormsAppC968
             // 
             productBindingSource.DataSource = typeof(Product);
             // 
-            // button8
+            // searchButton
             // 
-            button8.BackColor = SystemColors.Control;
-            button8.Location = new Point(661, 15);
-            button8.Name = "button8";
-            button8.Size = new Size(64, 29);
-            button8.TabIndex = 81;
-            button8.Text = "Search";
-            button8.UseVisualStyleBackColor = false;
+            searchButton.BackColor = SystemColors.Control;
+            searchButton.Location = new Point(661, 15);
+            searchButton.Name = "searchButton";
+            searchButton.Size = new Size(84, 29);
+            searchButton.TabIndex = 81;
+            searchButton.Text = "Search";
+            searchButton.UseVisualStyleBackColor = false;
+            searchButton.Click += searchButton_Click;
             // 
-            // textBox6
+            // searchTextbox
             // 
-            textBox6.Location = new Point(751, 15);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(245, 27);
-            textBox6.TabIndex = 80;
+            searchTextbox.Location = new Point(751, 15);
+            searchTextbox.Name = "searchTextbox";
+            searchTextbox.Size = new Size(245, 27);
+            searchTextbox.TabIndex = 80;
+            searchTextbox.TextChanged += textBox6_TextChanged;
             // 
             // partsLabel
             // 
@@ -195,6 +198,7 @@ namespace WinFormsAppC968
             dataGridViewParts.RowTemplate.Height = 29;
             dataGridViewParts.Size = new Size(537, 188);
             dataGridViewParts.TabIndex = 78;
+            dataGridViewParts.CellContentClick += dataGridViewParts_CellContentClick;
             // 
             // partIDDataGridViewTextBoxColumn
             // 
@@ -382,16 +386,27 @@ namespace WinFormsAppC968
             label1.TabIndex = 62;
             label1.Text = "Modify Product";
             // 
+            // refreshButton
+            // 
+            refreshButton.Location = new Point(817, 276);
+            refreshButton.Name = "refreshButton";
+            refreshButton.Size = new Size(75, 44);
+            refreshButton.TabIndex = 85;
+            refreshButton.Text = "Refresh";
+            refreshButton.UseVisualStyleBackColor = true;
+            refreshButton.Click += refreshButton_Click;
+            // 
             // ModifyProduct
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1028, 711);
+            Controls.Add(refreshButton);
             Controls.Add(addButton);
             Controls.Add(label8);
             Controls.Add(dataGridViewAssociatedParts);
-            Controls.Add(button8);
-            Controls.Add(textBox6);
+            Controls.Add(searchButton);
+            Controls.Add(searchTextbox);
             Controls.Add(partsLabel);
             Controls.Add(dataGridViewParts);
             Controls.Add(deleteButton);
@@ -428,8 +443,8 @@ namespace WinFormsAppC968
         private Button addButton;
         private Label label8;
         private DataGridView dataGridViewAssociatedParts;
-        private Button button8;
-        private TextBox textBox6;
+        private Button searchButton;
+        private TextBox searchTextbox;
         private Label partsLabel;
         private DataGridView dataGridViewParts;
         private Button deleteButton;
@@ -464,5 +479,6 @@ namespace WinFormsAppC968
         private DataGridViewTextBoxColumn maxDataGridViewTextBoxColumn;
         private BindingSource allPartsBindingSource;
         private BindingSource inventoryBindingSource;
+        private Button refreshButton;
     }
 }

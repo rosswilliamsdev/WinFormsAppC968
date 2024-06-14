@@ -32,6 +32,9 @@ namespace WinFormsAppC968
         {
             components = new System.ComponentModel.Container();
             dataGridViewParts = new DataGridView();
+            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            minDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            maxDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             allPartsBindingSource5 = new BindingSource(components);
             inventoryBindingSource1 = new BindingSource(components);
             allPartsBindingSource2 = new BindingSource(components);
@@ -57,17 +60,16 @@ namespace WinFormsAppC968
             productsModifyButton = new Button();
             productsAddButton = new Button();
             exitButton = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            partsSearchTextbox = new TextBox();
+            productsSearchTextbox = new TextBox();
             partsSearchButton = new Button();
             productsSearchButton = new Button();
             mainScreenHeader = new Label();
             productsBindingSource = new BindingSource(components);
             allPartsBindingSource3 = new BindingSource(components);
             allPartsBindingSource4 = new BindingSource(components);
-            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            minDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            maxDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            partsRefreshButton = new Button();
+            productsRefreshButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewParts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)allPartsBindingSource5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)inventoryBindingSource1).BeginInit();
@@ -97,6 +99,30 @@ namespace WinFormsAppC968
             dataGridViewParts.Size = new Size(444, 188);
             dataGridViewParts.TabIndex = 0;
             dataGridViewParts.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // minDataGridViewTextBoxColumn
+            // 
+            minDataGridViewTextBoxColumn.DataPropertyName = "Min";
+            minDataGridViewTextBoxColumn.HeaderText = "Min";
+            minDataGridViewTextBoxColumn.MinimumWidth = 6;
+            minDataGridViewTextBoxColumn.Name = "minDataGridViewTextBoxColumn";
+            minDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // maxDataGridViewTextBoxColumn
+            // 
+            maxDataGridViewTextBoxColumn.DataPropertyName = "Max";
+            maxDataGridViewTextBoxColumn.HeaderText = "Max";
+            maxDataGridViewTextBoxColumn.MinimumWidth = 6;
+            maxDataGridViewTextBoxColumn.Name = "maxDataGridViewTextBoxColumn";
+            maxDataGridViewTextBoxColumn.Width = 125;
             // 
             // allPartsBindingSource5
             // 
@@ -224,7 +250,7 @@ namespace WinFormsAppC968
             // partsAddButton
             // 
             partsAddButton.BackgroundImageLayout = ImageLayout.None;
-            partsAddButton.Location = new Point(260, 339);
+            partsAddButton.Location = new Point(182, 339);
             partsAddButton.Name = "partsAddButton";
             partsAddButton.Size = new Size(63, 42);
             partsAddButton.TabIndex = 4;
@@ -234,7 +260,7 @@ namespace WinFormsAppC968
             // 
             // partsModifyButton
             // 
-            partsModifyButton.Location = new Point(329, 339);
+            partsModifyButton.Location = new Point(251, 339);
             partsModifyButton.Name = "partsModifyButton";
             partsModifyButton.Size = new Size(72, 42);
             partsModifyButton.TabIndex = 5;
@@ -264,7 +290,7 @@ namespace WinFormsAppC968
             // 
             // productsModifyButton
             // 
-            productsModifyButton.Location = new Point(927, 339);
+            productsModifyButton.Location = new Point(849, 339);
             productsModifyButton.Name = "productsModifyButton";
             productsModifyButton.Size = new Size(72, 42);
             productsModifyButton.TabIndex = 8;
@@ -275,7 +301,7 @@ namespace WinFormsAppC968
             // productsAddButton
             // 
             productsAddButton.BackgroundImageLayout = ImageLayout.None;
-            productsAddButton.Location = new Point(858, 339);
+            productsAddButton.Location = new Point(780, 339);
             productsAddButton.Name = "productsAddButton";
             productsAddButton.Size = new Size(63, 42);
             productsAddButton.TabIndex = 7;
@@ -293,19 +319,19 @@ namespace WinFormsAppC968
             exitButton.UseVisualStyleBackColor = true;
             exitButton.Click += button7_Click;
             // 
-            // textBox1
+            // partsSearchTextbox
             // 
-            textBox1.Location = new Point(312, 106);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(164, 27);
-            textBox1.TabIndex = 11;
+            partsSearchTextbox.Location = new Point(312, 106);
+            partsSearchTextbox.Name = "partsSearchTextbox";
+            partsSearchTextbox.Size = new Size(164, 27);
+            partsSearchTextbox.TabIndex = 11;
             // 
-            // textBox2
+            // productsSearchTextbox
             // 
-            textBox2.Location = new Point(904, 106);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(164, 27);
-            textBox2.TabIndex = 12;
+            productsSearchTextbox.Location = new Point(904, 106);
+            productsSearchTextbox.Name = "productsSearchTextbox";
+            productsSearchTextbox.Size = new Size(164, 27);
+            productsSearchTextbox.TabIndex = 12;
             // 
             // partsSearchButton
             // 
@@ -316,7 +342,7 @@ namespace WinFormsAppC968
             partsSearchButton.TabIndex = 13;
             partsSearchButton.Text = "Search";
             partsSearchButton.UseVisualStyleBackColor = false;
-            partsSearchButton.Click += button8_Click;
+            partsSearchButton.Click += partsSearchButton_Click;
             // 
             // productsSearchButton
             // 
@@ -327,6 +353,7 @@ namespace WinFormsAppC968
             productsSearchButton.TabIndex = 14;
             productsSearchButton.Text = "Search";
             productsSearchButton.UseVisualStyleBackColor = false;
+            productsSearchButton.Click += productsSearchButton_Click;
             // 
             // mainScreenHeader
             // 
@@ -354,29 +381,25 @@ namespace WinFormsAppC968
             allPartsBindingSource4.DataMember = "AllParts";
             allPartsBindingSource4.DataSource = inventoryBindingSource1;
             // 
-            // nameDataGridViewTextBoxColumn
+            // partsRefreshButton
             // 
-            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            nameDataGridViewTextBoxColumn.Width = 125;
+            partsRefreshButton.Location = new Point(329, 339);
+            partsRefreshButton.Name = "partsRefreshButton";
+            partsRefreshButton.Size = new Size(72, 42);
+            partsRefreshButton.TabIndex = 16;
+            partsRefreshButton.Text = "Refresh";
+            partsRefreshButton.UseVisualStyleBackColor = true;
+            partsRefreshButton.Click += partsRefreshButton_Click;
             // 
-            // minDataGridViewTextBoxColumn
+            // productsRefreshButton
             // 
-            minDataGridViewTextBoxColumn.DataPropertyName = "Min";
-            minDataGridViewTextBoxColumn.HeaderText = "Min";
-            minDataGridViewTextBoxColumn.MinimumWidth = 6;
-            minDataGridViewTextBoxColumn.Name = "minDataGridViewTextBoxColumn";
-            minDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // maxDataGridViewTextBoxColumn
-            // 
-            maxDataGridViewTextBoxColumn.DataPropertyName = "Max";
-            maxDataGridViewTextBoxColumn.HeaderText = "Max";
-            maxDataGridViewTextBoxColumn.MinimumWidth = 6;
-            maxDataGridViewTextBoxColumn.Name = "maxDataGridViewTextBoxColumn";
-            maxDataGridViewTextBoxColumn.Width = 125;
+            productsRefreshButton.Location = new Point(927, 339);
+            productsRefreshButton.Name = "productsRefreshButton";
+            productsRefreshButton.Size = new Size(72, 42);
+            productsRefreshButton.TabIndex = 17;
+            productsRefreshButton.Text = "Refresh";
+            productsRefreshButton.UseVisualStyleBackColor = true;
+            productsRefreshButton.Click += productsRefreshButton_Click;
             // 
             // MainScreen
             // 
@@ -384,11 +407,13 @@ namespace WinFormsAppC968
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(1093, 533);
+            Controls.Add(productsRefreshButton);
+            Controls.Add(partsRefreshButton);
             Controls.Add(mainScreenHeader);
             Controls.Add(productsSearchButton);
             Controls.Add(partsSearchButton);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(productsSearchTextbox);
+            Controls.Add(partsSearchTextbox);
             Controls.Add(exitButton);
             Controls.Add(productsDeleteButton);
             Controls.Add(productsModifyButton);
@@ -434,8 +459,8 @@ namespace WinFormsAppC968
         private Button productsModifyButton;
         private Button productsAddButton;
         private Button exitButton;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox partsSearchTextbox;
+        private TextBox productsSearchTextbox;
         private Button partsSearchButton;
         private Button productsSearchButton;
         private Label mainScreenHeader;
@@ -461,5 +486,7 @@ namespace WinFormsAppC968
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn minDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn maxDataGridViewTextBoxColumn;
+        private Button partsRefreshButton;
+        private Button productsRefreshButton;
     }
 }

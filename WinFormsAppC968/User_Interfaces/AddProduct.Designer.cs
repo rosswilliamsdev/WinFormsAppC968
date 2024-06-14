@@ -47,8 +47,8 @@ namespace WinFormsAppC968
             nameTextbox = new TextBox();
             idTextbox = new TextBox();
             deleteButton = new Button();
-            button8 = new Button();
-            textBox6 = new TextBox();
+            searchButton = new Button();
+            searchTextbox = new TextBox();
             partsLabel = new Label();
             dataGridViewParts = new DataGridView();
             partIDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -211,24 +211,24 @@ namespace WinFormsAppC968
             deleteButton.TabIndex = 54;
             deleteButton.Text = "Delete";
             deleteButton.UseVisualStyleBackColor = true;
-            deleteButton.Click += this.deleteButton_Click;
+            deleteButton.Click += deleteButton_Click;
             // 
-            // button8
+            // searchButton
             // 
-            button8.BackColor = SystemColors.Control;
-            button8.Location = new Point(660, 21);
-            button8.Name = "button8";
-            button8.Size = new Size(64, 29);
-            button8.TabIndex = 58;
-            button8.Text = "Search";
-            button8.UseVisualStyleBackColor = false;
+            searchButton.BackColor = SystemColors.Control;
+            searchButton.Location = new Point(660, 21);
+            searchButton.Name = "searchButton";
+            searchButton.Size = new Size(64, 29);
+            searchButton.TabIndex = 58;
+            searchButton.Text = "Search";
+            searchButton.UseVisualStyleBackColor = false;
             // 
-            // textBox6
+            // searchTextbox
             // 
-            textBox6.Location = new Point(750, 21);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(245, 27);
-            textBox6.TabIndex = 57;
+            searchTextbox.Location = new Point(750, 21);
+            searchTextbox.Name = "searchTextbox";
+            searchTextbox.Size = new Size(245, 27);
+            searchTextbox.TabIndex = 57;
             // 
             // partsLabel
             // 
@@ -380,8 +380,8 @@ namespace WinFormsAppC968
             Controls.Add(addProductAddButton);
             Controls.Add(label8);
             Controls.Add(dataGridViewAssociatedParts);
-            Controls.Add(button8);
-            Controls.Add(textBox6);
+            Controls.Add(searchButton);
+            Controls.Add(searchTextbox);
             Controls.Add(partsLabel);
             Controls.Add(dataGridViewParts);
             Controls.Add(deleteButton);
@@ -432,8 +432,8 @@ namespace WinFormsAppC968
         private TextBox nameTextbox;
         private TextBox idTextbox;
         private Button deleteButton;
-        private Button button8;
-        private TextBox textBox6;
+        private Button searchButton;
+        private TextBox searchTextbox;
         private Label partsLabel;
         private DataGridView dataGridViewParts;
         private DataGridView dataGridViewAssociatedParts;
