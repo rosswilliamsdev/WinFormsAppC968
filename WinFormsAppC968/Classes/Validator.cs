@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppC968.InventoryPartProduct
 {
+
+
+    // This is a class I thought of for a future refactor. It's not used in the project's code yet
+
     public class Validator
     {
         public bool ValidateProduct(Product product, out string errorMessage)
